@@ -1,11 +1,16 @@
 <script>
   import HowTo from "./HowTo.svelte";
   import Timer from "./Timer.svelte";
+  let audio;
+  function timerEnds(e) {
+    audio.play();
+  }
 </script>
 
 <h1>Hand Washing App</h1>
 
-<Timer />
+<Timer on:end={timerEnds} />
+
 <HowTo />
 
 <h3>
@@ -13,8 +18,12 @@
     href="https://www.who.int/teams/integrated-health-services/infection-prevention-control"
     >Picture Source</a
   >
-  <a href="https://freesound.org/people/metrost...">Sound Source</a>
+  <a href="https://freesound.org/">Sound Source</a>
 </h3>
+
+<audio bind:this={audio}>
+  <source src="sound.wav" />
+</audio>
 
 <style>
   h1,
